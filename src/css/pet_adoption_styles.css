@@ -1,0 +1,106 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #fff;
+    padding: 10px 50px;
+}
+.user-address-info {
+    text-align: right;
+    color: #426b1f;
+}
+.header h1 {
+    color: #426b1f; /* Set the title color to olive green */
+    margin: 0; /* Remove default margin */
+    margin-bottom: 0.5em; /* Add some space below the title */
+    text-align: left;
+}
+
+.header h2 {
+    margin: 0; /* Remove default margin */
+    text-align: left;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.pet-list {
+    width: 75%;
+    padding: 20px;
+}
+
+.pet {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.pet img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.pet-info {
+    flex: 1;
+}
+
+.adoption-fee {
+    font-size: 20px;
+    color: #333;
+    margin-right: 20px;
+}
+
+.adopt-now {
+    padding: 10px 20px;
+    background-color: #426b1f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.adopt-now:hover {
+    background-color: #426b1f;
+}
+
+.sidebar {
+    width: 20%;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.sidebar h3 {
+    color: #333;
+}
+
+.clickable-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+    font-size: 1.4em; /* Adjust as needed to match your desired size */
+    margin-right: 20px;
+}
+
+.clickable-link:hover {
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: underline;
+}
+
+
