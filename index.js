@@ -10,7 +10,7 @@ app.engine('html',require('ejs').renderFile)
 app.use(express.static('src'));
 
 app.get('/', function (req, res) {
-    res.render('index.html');
+    res.render('adoptionPage.html');
 });
 
 // Start the server on port 3000
