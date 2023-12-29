@@ -1,7 +1,7 @@
 const App = {
     web3: null,
     contracts: {},
-    AdoptionContractAddress: "0x7135a4d981aA93Ae7288797056BcbEe0510bAeD2",
+    AdoptionContractAddress: "0x40b14595f3e2d0899b3E2Af7E721E24bC18F2Bc5",
     currentAccount: null,
     AdoptionContractABI:[
         {

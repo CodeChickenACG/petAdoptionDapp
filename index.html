@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/pet_adoption_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+        }
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+        .pet-list {
+            width: 70%;
+        }
+        .pet {
+            background: white;
+            margin-bottom: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .pet img {
+            width: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .pet-info {
+            flex: 1;
+        }
+        .adoption-fee {
+            width: 150px;
+            text-align: center;
+            margin-right: 20px;
+        }
+        .adopt-now {
+            padding: 10px 20px;
+            background: #e2e2e2;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar {
+            width: 25%;
+            background: white;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        button[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Pet Adoption With Blockchain</h1>
+    <button id="viewPetsButton" class="clickable-link">Pets to be Adopted</button>
+    <!--<button id="listPetButton" class="clickable-link">List a New Pet</button>-->
+    <div id="currentUserAddress" class="user-address-info">
+        <!-- The current user's address will be display here -->
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="pet-list">
+        <div class="transfer-microchip">
+            <h2>Transfer Microchip Token</h2>
+            <form id="transferMicrochipForm">
+                <div class="form-group">
+                    <label for="transferListingId">Listing ID:</label>
+                    <input type="number" id="transferListingId" required>
+                </div>
+                <div class="form-group">
+                    <label for="receiverAddress">Receiver Address:</label>
+                    <input type="text" id="receiverAddress" required>
+                </div>
+                <button type="button" id="transferMicrochipButton">Transfer</button>
+            </form>
+        </div>
+
+        <div id="applicationFormContainer">
+            <h2>Send Pet Application</h2>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="recipientAddress">Recipient Address:</label>
+                    <input type="text" id="recipientAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="applicationLink">Application Link (PDF URL):</label>
+                    <input type="text" id="applicationLink" required>
+                </div>
+                <button type="button" id = "sendApplicationButton">Send Application</button>
+            </form>
+        </div>
+
+        <div id="contractFormContainer">
+            <h2>Send Adoption Contract</h2>
+            <form id="contractForm">
+                <div class="form-group">
+                    <label for="contractListingId">Listing ID:</label>
+                    <input type="number" id="contractListingId" required>
+                </div>
+                <div class="form-group">
+                    <label for="contractRecipientAddress">Recipient Address:</label>
+                    <input type="text" id="contractRecipientAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="contractPdfURL">PDF URL:</label>
+                    <input type="text" id="contractPdfURL" required>
+                </div>
+                <button type="button" id = "sendContractButton">Send Contract</button>
+            </form>
+        </div>
+
+        <div id="signedContractFormContainer">
+            <h2>Send Signed Adoption Contract</h2>
+            <form id="signedContractForm">
+                <div class="form-group">
+                    <label for="signedContractRecipientAddress">Recipient Address:</label>
+                    <input type="text" id="signedContractRecipientAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="signedContractPdfURL">PDF URL:</label>
+                    <input type="text" id="signedContractPdfURL" required>
+                </div>
+                <button type="button" id="sendSignedContractButton">Send Signed Contract</button>
+            </form>
+        </div>
+
+        <div id="adoptionFeeFormContainer">
+            <h2>Request Adoption Fee</h2>
+            <form id="adoptionFeeForm">
+                <div class="form-group">
+                    <label for="feeListingId">Listing ID:</label>
+                    <input type="number" id="feeListingId" required>
+                </div>
+                <div class="form-group">
+                    <label for="adopterFeeAddress">Adopter Address:</label>
+                    <input type="text" id="adopterFeeAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="ownershipFormPdfURL">Ownership Form PDF URL:</label>
+                    <input type="text" id="ownershipFormPdfURL" required>
+                </div>
+                <button type="button" id = "sendAdoptionFeeButton">Request Adoption Fee</button>
+            </form>
+        </div>
+
+        <div id="balanceFormContainer">
+            <h2>Check Balance</h2>
+            <form id="balanceForm">
+                <div class="form-group">
+                    <label for="userAddress">User Address:</label>
+                    <input type="text" id="userAddress" required>
+                </div>
+                <div class="form-group">
+                    <label for="tokenId">Token ID:</label>
+                    <input type="number" id="tokenId" required>
+                </div>
+                <button type="button" id = "CheckBalanceButton">Check Balance</button>
+            </form>
+            <div id="balanceResult">Balance: <span id="displayBalance"></span></div>
+        </div>
+
+    </div>
+
+    <div class="sidebar">
+        <!-- List new pet form on the sidebar -->
+        <h2>List a New Pet</h2>
+        <form id="newPetForm">
+            <div class="form-group">
+                <label for="microchipNumber">Microchip Number:</label>
+                <input type="text" id="microchipNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="petName">Pet Name:</label>
+                <input type="text" id="petName" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="adoptionFee">Adoption Fee:</label>
+                <input type="number" id="adoptionFee" required>
+            </div>
+            <button type="button" onclick="App.handleListPet()">List Pet</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+<script src="js/petAdoptionApp.js"></script>
+
+</body>
+</html>
